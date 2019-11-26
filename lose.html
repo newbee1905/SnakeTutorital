@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="HandheldFriendly" content="true" />
+	<title>Snake Tutorital</title>
+	<link href="//cdn.jsdelivr.net/gh/hung1001/font-awesome@8ca5ac0/css/all.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="content.css" />
+	<link href="prism.css" rel="stylesheet" />
+</head>
+
+<body>
+	<nav class="myNav">
+		<div class="menu--toggle" id="myNav">
+			<i class="menu--open fa fa-bars fa--light"></i>
+			<i class="menu--close fa fa-times fa--light"></i>
+		</div>
+		<ul class="menu--items">
+			<li class="link">
+				<a href="index.html"><i class="icon fad fa-home"></i> Home</a>
+			</li>
+			<li class="link">
+				<a href="#"><i class="icon fad fa-snake"></i> Snake<b>???</b></a>
+			</li>
+			<li class="link">
+				<a href="#"><i class="icon fad fa-lightbulb-on"></i> Coding time</a>
+			</li>
+			<li class="link">
+				<a href="#"><i class="icon fad fa-laptop-code"></i> Some examples</a>
+			</li>
+		</ul>
+		<ul class="sub--menu--items">
+			<li class="sub--link"><a href="gameplay.html">Gameplay</a></li>
+			<li class="sub--link"><a href="history.html">History</a></li>
+			<li class="sub--link"><a href="nokia.html">??Nokia??</a></li>
+		</ul>
+		<ul class="sub--menu--items">
+			<li class="sub--link"><a href="create_snake.html">Snake</a></li>
+			<li class="sub--link"><a href="move_snake.html">Control</a></li>
+			<li class="sub--link"><a href="lose.html">Game State</a></li>
+		</ul>
+		<ul class="sub--menu--items">
+			<li class="sub--link"><a href="first_example.html">First</a></li>
+			<li class="sub--link"><a href="second_example.html">Second</a></li>
+			<li class="sub--link"><a href="third_example.html">Third</a></li>
+		</ul>
+	</nav>
+	<main class="content">
+		<div class="content--inner">
+			<div class="content--part">
+				<h2 class="heading title">Game State</h2>
+				<p>
+					Now, let's start combining all these pieces together and make the game. First let's make a game state that
+					keeps track of everything going on the game. We'll first add the snake data, food data, direction and the game
+					score. We'll also add a gameover flag to check of the game is running or over.
+				</p>
+				<p>
+					<pre><code class="language-javascript line-numbers">// Game State
+let state = {
+//   Initially game is not running
+	gameover: true,
+//   Initial Direction right
+	direction: 2,
+// snake array
+	snake: [
+		{ x: 10, y: 10, direction: 2 },
+		{ x: 10, y: 20, direction: 2 },
+		{ x: 10, y: 30, direction: 2 }
+	],
+//   initial food location
+	food: { x: 0, y: 0 },
+//   initial score
+	score: 0
+};
+<!--	 --></code></pre>
+				</p>
+			</div>
+			<div class="content--part">
+				<h2 class="heading title">Game Loop</h2>
+				<p>
+					The entire game runs around a loop called Game loop. One iteration in a loop repaints the entire canvas and is
+					called a frame. We decide the number of frames we want to display per second. Greater frame per second(fps)
+					results in fast snake movement and vice-versa. We'll make a function called draw that handles all our drawing
+					and computation. We'll call this function 10 times every second. There are two ways to do these, one is
+					setInterval and the other is window.requestAnimationFrame(). In this tutorial we will use the later one. For
+					more information about window.requestAnimationFrame click
+					<a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame">
+						<span class="highlight--link">here</span>.
+					</a>
+				</p>
+				<p>
+					<pre><code class="language-javascript line-numbers">// To compare time in the function
+var start = 0;
+// Draw Function
+function draw(timestamp) {
+//   Increment Start
+	start++;
+//   timestamp contains the time elapsed since first call in milliseconds
+//   1000/10 refers to 10 frames for second. Change values to see the difference
+	if (timestamp - start > 1000   10) {
+//this block runs every 10th of a second
+//  We put our drawing functions and computatin here
+
+//  Checking if game is over.
+		if (checkGameOver()) {
+//        Exiting function if is over
+			state.gameover = true;
+			return;
+		}
+//     Calculating next position of snake
+		 moveSnake();
+//  Redrawing the canvas to clear previous fram
+		drawBackground();
+// drawing the food
+		drawFood(ctx,state.food.x,state.food.y);
+// drawing the snake
+		drawSnake();
+// Checking if the snake eats the food
+		eatFood();
+// resetting the start 
+		start = timestamp;
+	}
+//   recursively calls itself until game over
+	if (!state.gameover) window.requestAnimationFrame(draw);
+}
+<!--	 --></code></pre>
+				</p>
+				<p>Now, lets define how the checkGameOver, drawSnake, eatFood and mod functions. functions</p>
+				<p>
+					<pre><code class="language-javascript">// Adding event Listener on the document for keydown
+document.addEventListener("keydown", event => {
+//   Checking if Arrow keys are pressed
+	if (! Arrow gi.test(event.key))
+//     if not return
+		return
+
+
+//   Preventing default behaviour
+	event.preventDefault();
+
+//   null direction
+	let direction = 0;
+//   checking direction
+	switch (event.key) {
+		case "ArrowDown":
+			direction = 1;
+			break;
+		case "ArrowUp":
+			direction = -1;
+			break;
+		case "ArrowLeft":
+			direction = -2;
+			break;
+		case "ArrowRight":
+			direction = 2;
+			break;
+	}
+	if (
+//     if direction is changed
+		direction &&
+//     if snake direction and current direction are same
+		state.direction === state.snake[0].direction &&
+//     and the directions are not oposite to current direction i.e LEFT and RIGHT or UP and DOWN
+		state.direction !== -direction
+	) {
+//     Change the direction
+		state.direction = direction;
+	}
+});
+<!--	 --></code></pre>
+				</p>
+			</div>
+			<div class="content--part">
+				<h2 class="heading title">Event Handling</h2>
+				<p>
+					We now need to handle events fired by users to change the direction of snake.
+				</p>
+				<p>
+					<pre><code class="language-javascript">// mod function
+function mod(m, val) {
+	while (val < 0) {
+		val += m;
+	}
+	return val % m;
+}
+
+function drawSnake() {
+	//   we draw the snake form tail so that head is drawn last. It makes the head appear above all other drawings.
+	for (let i = state.snake.length - 1; i >= 0; --i) {
+		drawSnakePart(ctx,state.snake[i].x, state.snake[i].y, i === 0);
+	}
+}
+function eatFood() {
+	//   Head position
+	let x = state.snake[0].x;
+	let y = state.snake[0].y;
+	//   Tail Position
+	let fx = state.food.x;
+	let fy = state.food.y;
+	// if head and food are at same position
+	if (x == fx && y == fy) {
+		//     increase score
+		state.score++;
+		//     change score text
+		score.innerHTML = "Score: " + state.score;
+		//     Add a snake part
+		addPart();
+		//     Generate a new Food
+		generateFood();
+	}
+}
+// Checking game over. return bool
+function checkGameOver() {
+	const head = state.snake[0];
+	//   Checking if head collides with snake other parts. if collides gameover returns true
+	return state.snake.some(
+		(part, i) => i !== 0 && head.x === part.x && head.y === part.y
+	);
+	// Note: You can add blocks or check if it is colliding the boundary and make it game over
+}
+<!--	 --></code></pre>
+				</p>
+			</div>
+			<div class="content--part">
+				<h2 class="heading title">Wrapping Things</h2>
+				<p>
+					Finally, let's wrap up this game. We'll add an event handler to the play button that triggers the draw
+					function, which starts the Game Loop. It will also re-initialize the game state whenever game is over.
+				</p>
+				<p>
+					<pre><code class="language-javascript">// Event Handler
+play.onclick = function() {
+	//   If game is not running
+	if (state.gameover) {
+		//     Initialize state
+		state = {
+			gameover: false,
+			direction: 2,
+			//       making snake have two additional part. you can also use addPart() instead maually adding parts
+			snake: [
+				{ x: 10, y: 10, direction: 2 },
+				{ x: 10, y: 20, direction: 2 },
+				{ x: 10, y: 30, direction: 2 }
+			],
+			//       initial food
+			food: { x: 0, y: 0 },
+			//       Initial score
+			score: 0
+		};
+		//     Resetting Score
+		score.innerHTML = "Score: " + 0;
+		//     Generate New Food
+		generateFood();
+		//     Trigger Game Loop
+		window.requestAnimationFrame(draw);
+	}
+};	
+<!--   --></code></pre>
+				</p>
+				<p>
+					Now, we're set to go. All you have to do now is click play and start playing!
+				</p>
+			</div>
+			<div class="content--part">
+				<h2 class="heading title">Conclusion</h2>
+				<p>
+					You've now learned how to make a simple snake game. Try to make your own version of it, change the shape of
+					snake, speed of the game, make an attractive ui, add different modes and difficulty. Use your new found
+					Knowledge to make something beautiful and share among friends and with us too.
+				</p>
+			</div>
+			<div class="content--title--link">
+				<ol class="title--link--container">
+					<!-- <li class="title--link">heading 1</li>
+            <li class="title--link">heading 2</li>
+            <li class="title--link">heading 3</li> -->
+				</ol>
+			</div>
+		</div>
+	</main>
+	<script src="navbar.js"></script>
+	<script src="content.js"></script>
+	<script src="prism.js"></script>
+</body>
+
+</html>

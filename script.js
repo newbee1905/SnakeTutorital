@@ -6,7 +6,7 @@ let content_1 =   '<h3 class="heading letter__light">Welcome to Snake Tutorital<
     content_1 +=  '<p class="letter__light">Swipe up or down</p>';
 
 let content_2 =   '	<h3 class="heading heading__dark">';
-    content_2 +=  '		What is <span class="highlighted"><a href="#">Snake</a></span>?';
+    content_2 +=  '		What is <span class="highlighted"><a href="gameplay.html">Snake</a></span>?';
     content_2 +=  "	</h3>";
     content_2 +=  "	<ul>";
     content_2 +=  '		<li class="letter__big">';
@@ -16,39 +16,44 @@ let content_2 =   '	<h3 class="heading heading__dark">';
     content_2 +=  "  	</li>";
     content_2 +=  '		<li class="letter__big">';
     content_2 +=  '			<p class="letter__big">';
-    content_2 +=  '				Or may be you want to know about <span class="highlighted"><a href="#">which Nokia phone had it</a></span>?';
+    content_2 +=  '				Or may be you want to know about <span class="highlighted"><a href="nokia.html">which Nokia phone had it</a></span>?';
     content_2 +=  "			</p>";
     content_2 +=  "  	</li>";
     content_2 +=  "	</ul>";
 
 let content_3 =   '	<h3 class="heading heading__dark">';
-    content_3 +=  '		What is <span class="highlighted"><a href="#">Snake</a></span>?';
+    content_3 +=  '		How to make your <span class="highlighted"><a href="#">Snake</a></span>?';
     content_3 +=  "	</h3>";
     content_3 +=  "	<ul>";
     content_3 +=  '		<li class="letter__big">';
     content_3 +=  '			<p class="letter__big">';
-    content_3 +=' 				Do you want to know a little bit about <span class="highlighted"><a href="history.html">history of snake</a></span>?';
+    content_3 +=  '			  Do you want to know how to <span class="highlighted"><a href="history.html">move your snake and creating food</a></span> for it?';
     content_3 +=  "			</p>";
     content_3 +=  "  	</li>";
     content_3 +=  '		<li class="letter__big">';
     content_3 +=  '			<p class="letter__big">';
-    content_3 +=  '				Or may be you want to know about <span class="highlighted"><a href="#">who made it</a></span>?';
+    content_3 +=  '				<span class="highlighted"><a href="#">Ending your game or make your snake longer</a></span> after getting food.';
     content_3 +=  "			</p>";
     content_3 +=  "  	</li>";
     content_3 +=  "	</ul>";
 
 let content_4 =   '	<h3 class="heading heading__dark">';
-    content_4 +=  '		What is <span class="highlighted"><a href="#">Snake</a></span>?';
+    content_4 +=  '		Here are some examples';
     content_4 +=  "	</h3>";
     content_4 +=  "	<ul>";
     content_4 +=  '		<li class="letter__big">';
     content_4 +=  '			<p class="letter__big">';
-    content_4 +=' 				Do you want to know a little bit about <span class="highlighted"><a href="history.html">history of snake</a></span>?';
+    content_4 +=' 				<span class="highlighted"><a href="history.html">Example 1</a></span>.';
     content_4 +=  "			</p>";
     content_4 +=  "  	</li>";
     content_4 +=  '		<li class="letter__big">';
     content_4 +=  '			<p class="letter__big">';
-    content_4 +=  '				Or may be you want to know about <span class="highlighted"><a href="#">who made it</a></span>?';
+    content_4 +=' 				<span class="highlighted"><a href="history.html">Example 2</a></span>.';
+    content_4 +=  "			</p>";
+    content_4 +=  "  	</li>";
+    content_4 +=  '		<li class="letter__big">';
+    content_4 +=  '			<p class="letter__big">';
+    content_4 +=' 				<span class="highlighted"><a href="history.html">Example 3</a></span>.';
     content_4 +=  "			</p>";
     content_4 +=  "  	</li>";
     content_4 +=  "	</ul>";
@@ -66,21 +71,21 @@ content_style_2 += "justify-content: center;";
 content_style_2 += "align-items: baseline;";
 content_style_2 += "flex-direction: column;";
 content_style_2 += "padding-left: 15%;";
-content_style_2 += "background: wheat;";
+content_style_2 += "background: #e7f2ff;";
 
 let content_style_3 = "display: flex;";
 content_style_3 += "justify-content: center;";
 content_style_3 += "align-items: baseline;";
 content_style_3 += "flex-direction: column;";
 content_style_3 += "padding-left: 15%;";
-content_style_3 += "background: wheat;";
+content_style_3 += "background: #e7f2ff;";
 
 let content_style_4 = "display: flex;";
 content_style_4 += "justify-content: center;";
 content_style_4 += "align-items: baseline;";
 content_style_4 += "flex-direction: column;";
 content_style_4 += "padding-left: 15%;";
-content_style_4 += "background: wheat;";
+content_style_4 += "background: #e7f2ff;";
 
 let content_style = [
   content_style_1,
@@ -103,7 +108,7 @@ for (let switch_id = 1; switch_id <= amount_page; ++switch_id) {
           "transparent";
       }
       document.getElementById("switcher_" + switch_id).style.background =
-        "darkorange";
+        "#4191e1";
       setTimeout(() => {
         document.getElementById("content").innerHTML = content[switch_id - 1];
         document.getElementById("content").style = content_style[switch_id - 1];
@@ -139,7 +144,7 @@ document.body.addEventListener("mouseup", function(event) {
       for (let i = 1; i <= amount_page; ++i) {
         document.getElementById("switcher_" + i).style.background = "transparent";
       }
-      document.getElementById("switcher_" + cur_content).style.background = "darkorange";
+      document.getElementById("switcher_" + cur_content).style.background = "#4191e1";
       setTimeout(function() {
         document.getElementById("content").innerHTML = content[cur_content - 1];
         document.getElementById("content").style =
@@ -160,7 +165,7 @@ document.body.addEventListener("mouseup", function(event) {
           "transparent";
       }
       document.getElementById("switcher_" + cur_content).style.background =
-        "darkorange";
+        "#4191e1";
       setTimeout(function() {
         document.getElementById("content").innerHTML = content[cur_content - 1];
         document.getElementById("content").style =
@@ -191,7 +196,7 @@ document.body.addEventListener(
             "transparent";
         }
         document.getElementById("switcher_" + cur_content).style.background =
-          "darkorange";
+          "#4191e1";
         setTimeout(function() {
           document.getElementById("content").innerHTML =
             content[cur_content - 1];
@@ -213,7 +218,7 @@ document.body.addEventListener(
             "transparent";
         }
         document.getElementById("switcher_" + cur_content).style.background =
-          "darkorange";
+          "#4191e1";
         setTimeout(function() {
           document.getElementById("content").innerHTML =
             content[cur_content - 1];

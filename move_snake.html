@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="HandheldFriendly" content="true" />
+	<title>Snake Tutorital</title>
+	<link href="//cdn.jsdelivr.net/gh/hung1001/font-awesome@8ca5ac0/css/all.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="content.css" />
+	<link href="prism.css" rel="stylesheet" />
+</head>
+
+<body>
+	<nav class="myNav">
+		<div class="menu--toggle" id="myNav">
+			<i class="menu--open fa fa-bars fa--light"></i>
+			<i class="menu--close fa fa-times fa--light"></i>
+		</div>
+		<ul class="menu--items">
+			<li class="link">
+				<a href="index.html"><i class="icon fad fa-home"></i> Home</a>
+			</li>
+			<li class="link">
+				<a href="#"><i class="icon fad fa-snake"></i> Snake<b>???</b></a>
+			</li>
+			<li class="link">
+				<a href="#"><i class="icon fad fa-lightbulb-on"></i> Coding time</a>
+			</li>
+			<li class="link">
+				<a href="#"><i class="icon fad fa-laptop-code"></i> Some examples</a>
+			</li>
+		</ul>
+		<ul class="sub--menu--items">
+			<li class="sub--link"><a href="gameplay.html">Gameplay</a></li>
+			<li class="sub--link"><a href="history.html">History</a></li>
+			<li class="sub--link"><a href="nokia.html">??Nokia??</a></li>
+		</ul>
+		<ul class="sub--menu--items">
+			<li class="sub--link"><a href="create_snake.html">Snake</a></li>
+			<li class="sub--link"><a href="move_snake.html">Control</a></li>
+			<li class="sub--link"><a href="lose.html">Game State</a></li>
+		</ul>
+		<ul class="sub--menu--items">
+			<li class="sub--link"><a href="first_example.html">First</a></li>
+			<li class="sub--link"><a href="second_example.html">Second</a></li>
+			<li class="sub--link"><a href="third_example.html">Third</a></li>
+		</ul>
+	</nav>
+	<main class="content">
+		<div class="content--inner">
+			<div class="content--part">
+				<h2 class="heading title">Snake logic</h2>
+				<p>
+					This is an example of how snake move.
+				</p>
+				<p>
+					<table class="table--snake--pos">
+						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr>
+							<th></th>
+							<th class="snake--parts">2</th>
+							<th class="snake--head">1</th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr>
+							<th></th>
+							<th class="snake--parts">3</th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr>
+							<th></th>
+							<th class="snake--parts">4</th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</table>
+				</p>
+				<p>
+					<table class="table--snake--pos">
+						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr>
+							<th></th>
+							<th class="snake--parts">3</th>
+							<th class="snake--parts">2</th>
+							<th class="snake--head">1</th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr>
+							<th></th>
+							<th class="snake--parts">4</th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</table>
+				</p>
+				<p>
+					<table class="table--snake--pos">
+						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr>
+							<th></th>
+							<th class="snake--parts">4</th>
+							<th class="snake--parts">3</th>
+							<th class="snake--parts">2</th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th class="snake--head">1</th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</table>
+				</p>
+				<p>
+					We assume the canvas as a grid of 5x5 rectangles where each rectangle is of size 10x10px, so the size of
+					canvas is 50x50px. The next main thing to know is, a snake part is always 10px away from it's next part that
+					may be in the x-axis or y-axis. In the figure, the blue rectangle is the snake's head and grey ones are other
+					parts. What we can see here is every part that is not the snake's head or the snake's tail are the same each
+					time snake moves. So how can we update the snake? We can easily see that the head is the one that decides the
+					path and the direction to move. So we can just move the other parts forward, part 4 will be part 3, part 3
+					will be part 2, etc. Now, when the head moves it will get new direction and next coordinates, depending upon
+					the users control, which we'll discuss later. The snake can only move 10px in any one four direction i.e. the
+					rectangle size. Now let's define a part of snake as an object and the entire snake as an array of snake parts.
+					We'll also make a function that adds snake part dynamically, so that whenever snake eats it can grow along the
+					correct direction. Let's assume UP as -1, DOWN as 1, LEFT as -2, RIGHT as 2. The reason why we use this kind
+					of numbering is because we need to prevent the snake from moving opposite direction. Example: If the snake is
+					moving RIGHT it can't move LEFT and vice-versa. The same can be said for UP and LEFT.
+				</p>
+				<p>
+					<pre><code class="language-javascript line-numbers">// Remember to only set x,y to values that are multiple of 10 i.e. box size
+let head = {
+	//   Starting coordinates
+	x: 10,
+	y: 10,
+	//   RIGHT Direction
+	direction: 2
+};
+let snake = [head];
+
+// Dynamically Adding Snake Part
+function addPart() {
+	// Retrieving the last part or tail of snake
+	let tail = snake[snake.length - 1];
+
+	//   New Part details
+	let direction = tail.direction;
+	let x = tail.x;
+	let y = tail.y;
+	// finding the new parts coordinates according to tail
+	switch (direction) {
+		// DOWN
+		case 1:
+			y = mod(250, y - 10);
+			break;
+		// UP
+		case -1:
+			y = mod(250, y + 10);
+			break;
+		// LEFT
+		case -2:
+			x = mod(250, x + 10);
+			break;
+		// RIGHT
+		case 2:
+			x = mod(250, x - 10);
+			break;
+	}
+	//   Adding the new Part to the snake
+	snake.push({ x, y, direction });
+}
+<!--	 --></code></pre>
+				</p>
+			</div>
+			<div class="content--part">
+				<h2 class="heading title">Moving snake</h2>
+				<p>We now know how the snake functions. Next job is to move the snake according to the direction LEFT, RIGHT, UP
+					and DOWN. The idea is to increment snake head's x or y coordinate according to the it's direction, then we
+					simply change the parts value to the one that is ahead of it. This makes the part travel like a snake.</p>
+				<p>
+					<pre><code class="language-javascript line-numbers">// This variable holds the snake moving direction.
+let direction = 2; // RIGHT
+// Moving the Snake
+function moveSnake() {
+	//    NEW HEAD Coordinates
+	let x = snake[0].x;
+	let y = snake[0].y;
+	// Snake Direction
+	switch (direction) {
+		//DOWN - Move 1 box down
+		case 1:
+			y = mod(250, y + 10);
+			break;
+		//UP - Move 1 box up
+		case -1:
+			y = mod(250, y - 10);
+			break;
+		//LEFT - Move 1 box left
+		case -2:
+			x = mod(250, x - 10);
+			break;
+		//RIGHT - Move 1 box right
+		case 2:
+			x = mod(250, x + 10);
+			break;
+	}
+	//     Making a new copy of snake with new Head attached
+	const newSnake = [{ x, y, direction }];
+	const snakeLength = snake.length;
+	//   Now we change the value of a part with the part ahead of it.
+	for (let i = 1; i < snakeLength; ++i) {
+		newSnake.push({ ...snake[i - 1] });
+	}
+	snake = newSnake;
+}
+<!--	 --></code></pre>
+				</p>
+			</div>
+			<div class="content--part">
+				<h2 class="heading title">Generating Food</h2>
+				<p>
+					We will only add one food in the whole canvas in this tutorial. We will keep track of the food with a variable
+					also named food. Then we will generate food randomly inside the canvas avoiding the snake parts.
+				</p>
+				<p>
+					<pre><code class="language-javascript line-numbers">// Current Food
+let food = {x:40, y: 50};
+// Generating Food
+function generateFood() {
+
+//   Random box between 0 - 25 i.e the grid size 25x25. Multiply by 10 to get x,y coordinates
+	let x = Math.floor(Math.random() * 25) * 10;
+	let y = Math.floor(Math.random() * 25) * 10;
+	// selecting food that doesn't collide with the snake
+	while (snake.some(part => part.x === x && part.y === y)) {
+		x = Math.floor(Math.random() * 25) * 10;
+		y = Math.floor(Math.random() * 25) * 10;
+	}
+//   Next Food
+	food = { x, y };
+}
+<!--	 --></code></pre>
+				</p>
+			</div>
+			<div class="content--title--link">
+				<ol class="title--link--container">
+					<!-- <li class="title--link">heading 1</li>
+            <li class="title--link">heading 2</li>
+            <li class="title--link">heading 3</li> -->
+				</ol>
+			</div>
+		</div>
+	</main>
+	<script src="navbar.js"></script>
+	<script src="content.js"></script>
+	<script src="prism.js"></script>
+</body>
+
+</html>

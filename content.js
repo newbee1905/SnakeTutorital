@@ -20,7 +20,7 @@ window.onresize = window.onload = () => {
     title_pos[i] = curHeight;
     curHeight += content_part[i].offsetHeight;
     curHeight += content_part[i].getElementsByTagName("p").length * 1;
-    curHeight += 2 * parseFloat(getComputedStyle(title[i]).fontSize);
+    curHeight += 1.5 * parseFloat(getComputedStyle(title[i]).fontSize);
   }
 
   console.log(title_pos);
