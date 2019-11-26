@@ -89,7 +89,7 @@ a {
 }
 
 .menu--items {
-  z-index: 800;
+  z-index: 1;
 }
 
 .menu--items,
