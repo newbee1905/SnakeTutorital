@@ -190,17 +190,26 @@
 				<p>
 					We assume the canvas as a grid of 5x5 rectangles where each rectangle is of size 10x10px, so the size of
 					canvas is 50x50px. The next main thing to know is, a snake part is always 10px away from it's next part that
-					may be in the x-axis or y-axis. In the figure, the blue rectangle is the snake's head and grey ones are other
-					parts. What we can see here is every part that is not the snake's head or the snake's tail are the same each
-					time snake moves. So how can we update the snake? We can easily see that the head is the one that decides the
-					path and the direction to move. So we can just move the other parts forward, part 4 will be part 3, part 3
+					may be in the x-axis or y-axis.
+				</p>
+				<p>
+					In the figure, the blue rectangle is the snake's head and grey ones are other parts. What we can see here is
+					every part that is not the snake's head or the snake's tail are the same each time snake moves. So how can we
+					update the snake?
+				</p>
+				<p>
+					We can easily see that the head is the one that decides the path and the direction to move. So we can just
+					move the other parts forward, part 4 will be part 3, part 3
 					will be part 2, etc. Now, when the head moves it will get new direction and next coordinates, depending upon
-					the users control, which we'll discuss later. The snake can only move 10px in any one four direction i.e. the
-					rectangle size. Now let's define a part of snake as an object and the entire snake as an array of snake parts.
-					We'll also make a function that adds snake part dynamically, so that whenever snake eats it can grow along the
-					correct direction. Let's assume UP as -1, DOWN as 1, LEFT as -2, RIGHT as 2. The reason why we use this kind
-					of numbering is because we need to prevent the snake from moving opposite direction. Example: If the snake is
-					moving RIGHT it can't move LEFT and vice-versa. The same can be said for UP and LEFT.
+					the users control, which we'll discuss later.
+				</p>
+				<p>
+					The snake can only move 10px in any one four direction i.e. the rectangle size. Now let's define a part of
+					snake as an object and the entire snake as an array of snake parts. We'll also make a function that adds snake
+					part dynamically, so that whenever snake eats it can grow along the correct direction. Let's assume UP as -1,
+					DOWN as 1, LEFT as -2, RIGHT as 2. The reason why we use this kind of numbering is because we need to prevent
+					the snake from moving opposite direction. Example: If the snake is moving RIGHT it can't move LEFT and
+					vice-versa. The same can be said for UP and LEFT.
 				</p>
 				<p>
 					<pre><code class="language-javascript line-numbers">// Remember to only set x,y to values that are multiple of 10 i.e. box size
