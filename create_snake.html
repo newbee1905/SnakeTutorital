@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="HandheldFriendly" content="true" />
+	<title>Snake Tutorital</title>
+	<link href="//cdn.jsdelivr.net/gh/hung1001/font-awesome@8ca5ac0/css/all.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="content.css" />
+	<link href="prism.css" rel="stylesheet" />
+</head>
+
+<body>
+	<nav class="myNav">
+		<div class="menu--toggle" id="myNav">
+			<i class="menu--open fa fa-bars fa--light"></i>
+			<i class="menu--close fa fa-times fa--light"></i>
+		</div>
+		<ul class="menu--items">
+			<li class="link">
+				<a href="index.html"><i class="icon fad fa-home"></i> Home</a>
+			</li>
+			<li class="link">
+				<a href="#"><i class="icon fad fa-snake"></i> Snake<b>???</b></a>
+			</li>
+			<li class="link">
+				<a href="#"><i class="icon fad fa-lightbulb-on"></i> Coding time</a>
+			</li>
+			<li class="link">
+				<a href="#"><i class="icon fad fa-laptop-code"></i> Some examples</a>
+			</li>
+		</ul>
+		<ul class="sub--menu--items">
+			<li class="sub--link"><a href="gameplay.html">Gameplay</a></li>
+			<li class="sub--link"><a href="history.html">History</a></li>
+			<li class="sub--link"><a href="nokia.html">??Nokia??</a></li>
+		</ul>
+		<ul class="sub--menu--items">
+			<li class="sub--link"><a href="create_snake.html">Snake</a></li>
+			<li class="sub--link"><a href="move_snake.html">Control</a></li>
+			<li class="sub--link"><a href="eat_lose.html">Food</a></li>
+		</ul>
+		<ul class="sub--menu--items">
+			<li class="sub--link"><a href="first_example.html">First</a></li>
+			<li class="sub--link"><a href="second_example.html">Second</a></li>
+			<li class="sub--link"><a href="third_example.html">Third</a></li>
+		</ul>
+	</nav>
+	<main class="content">
+		<div class="content--inner">
+			<div class="content--part">
+				<h2 class="heading title">Basic markup</h2>
+				<p>
+					<pre><code class="language-markup line-numbers">...
+&lt;body&gt;
+	&lt;canvas id=&quot;draw-board&quot; width=&quot;250&quot; height=&quot;250&quot; &gt;&lt;/canvas&gt;
+	&lt;div id=&quot;score&quot;&gt;Score: 0&lt;/div&gt;
+	&lt;button id=&quot;play&quot;&gt;Play&lt;/button&gt;
+&lt;/body&gt;
+...	
+<!--	 --></code></pre>
+				</p>
+				<p>
+					We're going to use a canvas of height and width 250px and give it an id 'draw-board'. We will use this id to
+					select the canvas in JavaScript. We will also add a div element to display score and a button element to start
+					the game.
+				</p>
+				<p>
+					<pre><code class="language-javascript line-numbers">const button = document.getElementById("play");
+const score = document.getElementById("score");
+const canvas = document.getElementById("draw-board");
+<!--	 --></code></pre>
+				</p>
+				<p>
+					<pre><code class="language-javascript line-numbers">...
+canvas {
+	/*This width makes the canvas responsive*/
+	width: 80vmin;
+	background: 4px solid blue;
+}
+...
+<!--	 --></code></pre>
+				</p>
+				<p>
+					We add a border to see where the canvas is rendering.
+					<div class="blue--box--example"></div>
+				</p>
+			</div>
+			<div class="content--part">
+				<h2 class="heading title">Drawing on the canvas</h2>
+				<p>
+					<pre><code class="language-javascript line-numbers">// Selecting the canvas
+const canvas = document.getElementById("draw-board");
+// Returns 2d drawing context on the canvas
+const ctx = canvas.getContext("2d");
+<!--	 --></code></pre>
+				</p>
+				<p>
+					Now, we use the context reference to draw on the selected Canvas. Let's use a rectangle to represent a body
+					part of snake, and make a function named drawSnakePart to draw the rectangle. The function takes context
+					reference or ctx, (x,y) coordinates and a default parameter head to render different color incase the part is
+					head.
+				</p>
+				<pre><code class="language-javascript line-numbers">// See https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API for canvas usage
+function drawSnakePart(ctx, x, y, !head) {
+	// Set the fillstyle to green if it is head else white
+	ctx.fillStyle = head ? "green" : "white";
+	// draw a rectangle at (x,y) coordinates with width and height of 10px
+	ctx.fillRect(x, y, 10, 10);
+ /* Note: you can use any shape or image in this 
+function, but make sure it's height and width are 10px*/
+}
+<!--	 --></code></pre>
+				<p>
+					Similarly, we draw food for the snake as below:
+				</p>
+				<p>
+					<pre><code class="language-javascript line-numbers">//Drawing Food for snake to eat
+function drawFood(ctx, x, y) {
+	// Starting Path
+	ctx.beginPath();
+	// setting the fill style to red
+	ctx.fillStyle = "red";
+	// Making a circle
+	ctx.arc(x+5, y+5, 5, 0, 2 * Math.PI);
+	// Closing the Path
+	ctx.stroke();
+	// Filling the area enclosed by the path
+	ctx.fill();
+}
+<!--	 --></code></pre>
+				</p>
+				<p>
+					We are only going to use basic shapes to represent the snake and it's food. Whenever we draw something on the
+					canvas in one frame, we have to clear it in the next frame. So, we will draw a rectangle of size 250 x 250
+					i.e. the size of canvas. of the canvas. It acts as a background that repaints every frame, clearing the pixels
+					from the previous frames. It can be costly to repaint the canvas again and again, but for the sake of this
+					tutorial we will redraw the background so it will be easy to understand.
+				</p>
+				<p>
+					<pre><code class="language-javascript line-numbers">//Drawing Background
+function drawBackground(){
+	//the background color, choose whichever color you like
+	ctx.fillStyle="tan";
+	// draw a rectangle at (0,0) coordinates with width and height of 250px
+	ctx.fillRect(0,0,250,250);
+}
+<!--	 --></code></pre>
+				</p>
+			</div>
+			<div class="content--title--link">
+				<ol class="title--link--container">
+					<!-- <li class="title--link">heading 1</li>
+            <li class="title--link">heading 2</li>
+            <li class="title--link">heading 3</li> -->
+				</ol>
+			</div>
+		</div>
+	</main>
+	<script src="navbar.js"></script>
+	<script src="content.js"></script>
+	<script src="prism.js"></script>
+</body>
+
+</html>

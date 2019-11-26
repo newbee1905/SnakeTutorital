@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css?family=Lora:400,700|Open+Sans:400,400i,700&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	overflow: hidden;
+	background: wheat;
+}
+
+.heading--and--content {
+	width: 100vw;
+	height: 100vh;
+}
+
+#content {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	background: black;
+	text-align: center;
+}
+
+.content--switcher {
+	position: fixed;
+	top: 50%;
+	margin-left: 20px;
+	z-index: 1000;
+	transform: translateY(-50%);
+}
+
+.switcher {
+	width: 3vmax;
+	height: 3vmax;
+	border: 3px solid darkorange;
+	border-radius: 50%;
+	z-index: 1000;
+	margin: 2vmax 0;
+	cursor: pointer;
+}
+
+#switcher_1 {
+	background: darkorange;
+}
+
+@keyframes disappear {
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes reappear {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+.heading {
+	font-family: 'Lora', serif;
+	font-weight: 700;
+	font-size: 5vmax;
+	margin-bottom: 5vmax;
+}
+
+.heading__big {
+	font-size: 10vmax;
+}
+
+.heading__small {
+	font-size: 2.5vmax;
+}
+
+.letter__light {
+	color: wheat;
+}
+
+.letter__dark {
+	color: dark;
+}
+
+p {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.5vmax;
+}
+
+.letter__big {
+	font-size: 2.5vmax;
+}
+
+li {
+	margin-left: 1.5vmax;
+	margin-bottom: 1.5vmax;
+	text-align: left;
+}
+
+.highlighted {
+	background-image: linear-gradient(120deg, darkorange 0%, yellow 100%);
+  background-repeat: no-repeat;
+  background-size: 120% 0.2em;
+  background-position: 0 80%;
+  transition: background-size 0.25s ease-in;
+}
+
+.highlighted:hover {
+	background-size: 120% 85%;
+}
+
+a {
+	text-decoration: none;
+	color: currentColor;
+}
