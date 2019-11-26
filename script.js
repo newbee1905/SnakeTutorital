@@ -94,6 +94,14 @@ let content_style = [
   content_style_4
 ];
 
+document.getElementById("content").innerHTML = content[cur_content - 1];
+document.getElementById("content").style = content_style[cur_content - 1];
+console.log(document.getElementById("content").style);
+for (let i = 1; i <= amount_page; ++i) {
+  document.getElementById("switcher_" + i).style.background = "transparent";
+}
+document.getElementById("switcher_" + cur_content).style.background = "#4191e1";
+
 // switch content
 for (let switch_id = 1; switch_id <= amount_page; ++switch_id) {
   document

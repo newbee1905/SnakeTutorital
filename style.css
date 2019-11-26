@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Lora:400,700|Open+Sans:400,400i,700&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500|Slabo+27px&display=swap&subset=latin-ext');
 
 * {
   margin: 0;
@@ -99,8 +99,8 @@ body {
 }
 
 .heading {
-  font-family: "Lora", serif;
-  font-weight: 700;
+  font-family: 'Slabo 27px', serif;
+  font-weight: 500;
   font-size: 5vmax;
   margin-bottom: 5vmax;
 }
@@ -122,7 +122,7 @@ body {
 }
 
 p {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 1.5vmax;
 }
 

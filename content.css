@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Lora:400,700|Open+Sans:400,400i,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,500|Slabo+27px&display=swap&subset=latin-ext");
 
 * {
   margin: 0;
@@ -21,13 +21,13 @@ body {
 
 .heading {
   font-size: 2em;
-  font-family: "Lora", serif;
+  font-family: 'Slabo 27px', serif;
   letter-spacing: 2px;
 }
 
 p,
 a {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 1em;
 }
 
@@ -317,7 +317,7 @@ a {
 }
 
 .highlight--link {
-  font-weight: 900;
+  font-weight: 500;
   background-image: -o-linear-gradient(330deg, #a4d2ff 0%, #4191e1 100%);
   background-image: linear-gradient(120deg, #a4d2ff 0%, #4191e1 100%);
   background-repeat: no-repeat;
@@ -371,9 +371,9 @@ pre {
 
 .table--snake--pos tr th {
   font-size: 2em;
-  font-weight: 900;
+  font-weight: 500;
   color: #a4d2ff;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 .table--snake--pos .snake--head {
