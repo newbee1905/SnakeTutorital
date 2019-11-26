@@ -22,7 +22,7 @@ let content_2 =   '	<h3 class="heading heading__dark">';
     content_2 +=  "	</ul>";
 
 let content_3 =   '	<h3 class="heading heading__dark">';
-    content_3 +=  '		How to make your <span class="highlighted"><a href="snake.html">Snake</a></span>?';
+    content_3 +=  '		How to make your <span class="highlighted"><a href="create_snake.html">Snake</a></span>?';
     content_3 +=  "	</h3>";
     content_3 +=  "	<ul>";
     content_3 +=  '		<li class="letter__big">';
